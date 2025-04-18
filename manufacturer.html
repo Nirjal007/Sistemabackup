@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer Dashboard - Supply Chain Management</title>
+    <link rel="stylesheet" href="manufacturer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Sistema Seguro</h2>
+                <span class="role-badge">Manufacturer</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#production">
+                            <i class="fas fa-industry"></i>
+                            <span>Production</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#inventory">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Inventory</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#analytics">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="main-content">
+            <!-- Header & Stats -->
+            <div class="dashboard-header">
+                <h1>Manufacturer Dashboard</h1>
+                <div class="date-time">
+                    <span id="current-date"></span>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>New Orders</h3>
+                        <p id="pending-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon in-progress">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>In Production</h3>
+                        <p id="production-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon completed">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Completed</h3>
+                        <p id="completed-count">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Orders Section -->
+            <section id="new-orders-section" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">New Production Orders</h2>
+                </div>
+                <!-- Order Table -->
+                <div class="card table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>ProductName</th>
+                                <th>Material</th>
+                                <th>Quantity</th>
+                                <th>Received Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="new-orders-table">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="no-new-orders-message" class="no-data-message" style="display: none;">
+                        No new orders at the moment.
+                    </div>
+                </div>
+            </section>
+
+            <!-- In Progress Section -->
+            <section id="in-progress-section" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Orders In Production</h2>
+                </div>
+                <!-- Production Table -->
+                <div class="card table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>ProductName</th>
+                                <th>ProductID</th>
+                                <th>ProductMaterial</th>
+                                <th>Brand</th>
+                                <th>Color</th>
+                                <th>Manufactured Location</th>
+                                <th>Manufactured Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="in-progress-table">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="no-in-progress-message" class="no-data-message" style="display: none;">
+                        No orders in production.
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal for Order Processing -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Process Order</h2>
+            <div id="modal-order-details">
+                <!-- Order details will be inserted here -->
+            </div>
+            <div class="modal-form" id="production-details">
+                <div class="form-group">
+                    <label for="completion-date">Expected Completion Date:</label>
+                    <input type="date" id="completion-date" name="completion-date">
+                </div>
+                <div class="form-group">
+                    <label for="production-notes">Production Notes:</label>
+                    <textarea id="production-notes" rows="3" placeholder="Add notes about this production order"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="start-production-button" class="btn btn-primary">Start Production</button>
+                <button id="complete-button" class="btn btn-success" style="display: none;">Complete Production</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="manufacturer.js"></script>
+</body>
+</html>
